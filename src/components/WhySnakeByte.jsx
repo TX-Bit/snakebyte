@@ -6,8 +6,8 @@ const points = [
   {
     icon: Clock,
     color: '#00ff88',
-    title: 'Valmis viikossa',
-    description: 'Ei kuukausien odottelua. Landing page toimitetaan 7–10 päivässä, kotisivu 2–3 viikossa. Aikataulu pidetään.',
+    title: 'Valmis nopeasti',
+    description: 'Ei kuukausien odottelua. Kotisivu toimitetaan yleensä 2–3 viikossa. Aikataulu pidetään.',
   },
   {
     icon: Euro,

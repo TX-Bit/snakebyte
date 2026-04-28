@@ -5,7 +5,7 @@ import { ChevronDown } from 'lucide-react'
 const faqs = [
   {
     q: 'Kuinka nopeasti sivu on valmis?',
-    a: 'Landing page on valmis 7–10 päivässä. Kotisivu 2–3 viikossa. Aikataulu sovitaan etukäteen ja siitä pidetään kiinni. Jos sinulla on kiire, kerro se – katsotaan mitä on mahdollista.',
+    a: 'Kotisivu on valmis yleensä 2–3 viikossa. Aikataulu sovitaan etukäteen ja siitä pidetään kiinni. Jos sinulla on kiire, kerro se – katsotaan mitä on mahdollista.',
   },
   {
     q: 'Mitä minulta vaaditaan? Pitääkö minulla olla tekstit ja kuvat valmiina?',
@@ -13,11 +13,11 @@ const faqs = [
   },
   {
     q: 'Paljonko tämä maksaa ja onko piilokuluja?',
-    a: 'Landing page 599 € ja kotisivu alkaen 1 490 €. Hinta on kiinteä – sovitaan etukäteen, eikä se muutu. Domain ja hosting (n. 10–20 €/kk) laskutetaan erikseen, mutta nekin kerrotaan selkeästi tarjouksessa.',
+    a: 'Landing page alk. 250 € + alv ja perussivusto alk. 450 € + alv. Hinta sovitaan etukäteen, eikä se muutu kesken työn. Domain ja hosting laskutetaan erikseen, mutta nekin kerrotaan selkeästi tarjouksessa.',
   },
   {
     q: 'Voinko muokata sivua itse julkaisun jälkeen?',
-    a: 'Kyllä. Kotisivuihin rakennetaan yksinkertainen hallintapaneeli josta voit muuttaa tekstejä ja kuvia itse. Landing pagelle se ei yleensä ole tarpeen, mutta pienet muutokset hoituvat joka tapauksessa pyytämällä.',
+    a: 'Perussivustoon voidaan rakentaa yksinkertainen muokkauspaneeli teksteille. Landing page tehdään valmiiksi julkaistavana sivuna ilman erillistä säätöpaneelia.',
   },
   {
     q: 'Mitä jos en pidä lopputuloksesta?',

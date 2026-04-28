@@ -1,30 +1,14 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight, CheckCircle2, LayoutTemplate, Globe, Smartphone } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Globe, Smartphone } from 'lucide-react'
 
 const services = [
   {
-    icon: LayoutTemplate,
-    color: '#00ff88',
-    tag: 'Suosituin',
-    title: 'Landing page',
-    price: 'alkaen 599 €',
-    description:
-      'Yksi sivu, yksi viesti, yksi tavoite – saada kävijä ottamaan yhteyttä tai ostamaan. Sopii erinomaisesti yrittäjälle, joka tarvitsee laadukkaan verkkoläsnäolon nopeasti.',
-    features: [
-      'Näyttävä design räätälöitynä brändiisi',
-      'Yhteydenottolomake tai ajanvaraus',
-      'Toimii täydellisesti puhelimella',
-      'Valmis 7–10 päivässä',
-    ],
-    cta: 'Tilaa landing page',
-  },
-  {
     icon: Globe,
     color: '#00d4ff',
-    tag: null,
+    tag: 'Suosituin',
     title: 'Kotisivu yritykselle',
-    price: 'alkaen 1 490 €',
+    price: 'alk. 450 € + alv',
     description:
       'Useampisivuinen kotisivu yritykselle, joka haluaa näyttää ammattimaiselta ja erottua kilpailijoista. Sisältää kaiken mitä hyvä yrityssivusto tarvitsee.',
     features: [

@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Send, CheckCircle2, Mail, Phone, Clock } from 'lucide-react'
 
-const serviceOptions = ['Landing page (599 €)', 'Kotisivu (alkaen 1 490 €)', 'Mobiilisovellus', 'Muu / en tiedä vielä']
+const serviceOptions = ['Landing page (alk. 250 €)', 'Perussivusto (alk. 450 €)', 'Mobiilisovellus', 'Muu / en tiedä vielä']
 
 export default function Contact() {
   const ref = useRef(null)

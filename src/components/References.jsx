@@ -4,11 +4,11 @@ import { ArrowRight, TrendingUp, PhoneCall, Calendar } from 'lucide-react'
 
 const cases = [
   {
-    type: 'Landing page',
+    type: 'Kotisivu',
     color: '#00ff88',
     business: 'LVI-urakoitsija, Vantaa',
     challenge: 'Ei nettisivuja lainkaan. Asiakkaat Googlettavat putkimiestä ja löytävät kilpailijat.',
-    result: 'Landing page valmiina 8 päivässä. Kolme uutta asiakasyhteydenottoa ensimmäisellä viikolla.',
+    result: 'Kotisivu valmiina sovitussa aikataulussa. Kolme uutta asiakasyhteydenottoa ensimmäisellä viikolla.',
     metric: '+3 uutta asiakasta / vko 1',
     icon: PhoneCall,
   },
@@ -22,11 +22,11 @@ const cases = [
     icon: Calendar,
   },
   {
-    type: 'Landing page',
+    type: 'Kotisivu',
     color: '#a855f7',
     business: 'Personal trainer, Tampere',
     challenge: 'Instagram ei riitä – tarvitaan paikka jonne ohjata ihmiset ja saada heidät jäämään.',
-    result: 'Selkeä landing page valmennuspaketeille. Ensimmäinen asiakas viikon kuluessa julkaisusta.',
+    result: 'Selkeä kotisivu valmennuspaketeille. Ensimmäinen asiakas viikon kuluessa julkaisusta.',
     metric: 'Asiakas viikossa julkaisusta',
     icon: TrendingUp,
   },

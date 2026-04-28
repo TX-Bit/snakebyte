@@ -10,9 +10,7 @@ const fadeUp = {
 }
 
 const proofItems = [
-  { value: '30+', label: 'valmistunutta sivustoa' },
-  { value: '7–14 pv', label: 'toimitusaika' },
-  { value: '100 %', label: 'tyytyväisyystakuu' },
+  
 ]
 
 export default function Hero() {
@@ -26,8 +24,8 @@ export default function Hero() {
           className="absolute inset-0 opacity-[0.025]"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(0,255,136,0.6) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0,255,136,0.6) 1px, transparent 1px)
+              linear-gradient(var(--color-grid) 1px, transparent 1px),
+              linear-gradient(90deg, var(--color-grid) 1px, transparent 1px)
             `,
             backgroundSize: '80px 80px',
           }}
@@ -53,15 +51,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Eyebrow */}
-        <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-snake-green/25 bg-snake-green/[0.08] mb-8">
-            <span className="w-2 h-2 rounded-full bg-snake-green animate-pulse" />
-            <span className="text-snake-green text-xs font-semibold tracking-widest uppercase">
-              Nettisivut pienyrityksille – Helsinki
-            </span>
-          </div>
-        </motion.div>
+       
 
         {/* Headline */}
         <motion.h1
@@ -91,44 +81,10 @@ export default function Hero() {
           hävetä – ja jotka oikeasti saavat kävijän ottamaan yhteyttä.
         </motion.p>
 
-        {/* Price anchor */}
-        <motion.p
-          variants={fadeUp} initial="hidden" animate="show" custom={2.4}
-          className="text-slate-500 text-sm mb-10"
-        >
-          Landing page alkaen <span className="text-white font-semibold">599 €</span> · Valmis 7–14 päivässä
-        </motion.p>
+      
 
-        {/* Stars */}
-        <motion.div
-          variants={fadeUp} initial="hidden" animate="show" custom={2.7}
-          className="flex items-center justify-center gap-1.5 mb-10"
-        >
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} size={15} className="text-yellow-400 fill-yellow-400" />
-          ))}
-          <span className="text-slate-500 text-sm ml-1.5">"Juuri sellainen kuin halusin" – 30+ tyytyväistä yrittäjää</span>
-        </motion.div>
-
-        {/* CTAs */}
-        <motion.div
-          variants={fadeUp} initial="hidden" animate="show" custom={3}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
-        >
-          <button
-            onClick={() => document.querySelector('#yhteydenotto')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-primary text-base px-8 py-4 gap-3"
-          >
-            Pyydä maksuton tarjous
-            <ArrowRight size={18} />
-          </button>
-          <button
-            onClick={() => document.querySelector('#referenssit')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-outline text-base px-8 py-4"
-          >
-            Katso esimerkkejä →
-          </button>
-        </motion.div>
+        
+   
 
         {/* Stats strip */}
         <motion.div
@@ -144,7 +100,10 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark-950 to-transparent pointer-events-none" />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+        style={{ background: 'linear-gradient(to top, var(--color-page), transparent)' }}
+      />
     </section>
   )
 }
