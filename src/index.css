@@ -385,3 +385,9 @@ html[data-theme='morning'] section,
 html[data-theme='day'] section {
   color: var(--color-text);
 }
+
+html[data-theme] input::placeholder,
+html[data-theme] textarea::placeholder {
+  color: var(--color-soft);
+  opacity: 1;
+}

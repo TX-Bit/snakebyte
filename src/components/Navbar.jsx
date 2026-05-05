@@ -3,9 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, Moon, Sparkles, Sun, Sunrise, Sunset, X } from 'lucide-react'
 
 const navLinks = [
-  { label: 'Palvelut',    href: '#palvelut' },
-  { label: 'Hinnasto',    href: '#hinnasto' },
-  { label: 'Prosessi',    href: '#prosessi' },
+  { label: 'Hinnasto',     href: '#hinnasto' },
+  { label: 'Ota yhteyttä', href: '#yhteydenotto' },
 ]
 
 const themeOptions = [
@@ -76,7 +75,7 @@ export default function Navbar({ themeMode = 'auto', activeTheme = 'night', onTh
             className="flex items-center gap-2.5 group"
           >
             <img
-              src="/snake-icon-64.png"
+              src="/isologo.png"
               alt="SnakeByte"
               className="w-8 h-8 object-contain group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_8px_rgba(0,255,136,0.4)]"
             />

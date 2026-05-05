@@ -41,14 +41,7 @@ export default function Hero() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className="flex justify-center mb-8"
         >
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-snake-green/20 blur-2xl scale-150 animate-pulse-slow" />
-            <img
-              src="/snake-icon-256.png"
-              alt="SnakeByte"
-              className="relative w-20 h-20 object-contain drop-shadow-[0_0_24px_rgba(0,255,136,0.5)]"
-            />
-          </div>
+          
         </motion.div>
 
        

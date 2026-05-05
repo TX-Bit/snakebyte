@@ -21,6 +21,7 @@ function getTimeTheme(date = new Date()) {
 }
 
 export default function App() {
+  const [selectedPlan, setSelectedPlan] = useState('')
   const [themeMode, setThemeMode] = useState(() => (
     window.localStorage.getItem('snakebyte-theme-mode') || 'auto'
   ))
@@ -53,9 +54,9 @@ export default function App() {
         <Hero />
         {/* <Services /> */}
         {/* <WhySnakeByte /> */}
-        <Pricing />
-        <Process />
-        <Contact />
+        <Pricing onSelectPlan={setSelectedPlan} />
+        {/* <Process /> */}
+        <Contact selectedPlan={selectedPlan} />
       </main>
       <Footer />
     </div>

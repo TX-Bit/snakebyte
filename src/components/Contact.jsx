@@ -1,26 +1,100 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Send, CheckCircle2, Mail, Phone, Clock } from 'lucide-react'
+import { Send, CheckCircle2 } from 'lucide-react'
 
-const serviceOptions = ['Landing page (alk. 250 €)', 'Perussivusto (alk. 450 €)', 'Mobiilisovellus', 'Muu / en tiedä vielä']
+const serviceOptions = ['Landing page', 'Perussivusto', 'Muu / en tiedä vielä']
+const contactOptions = ['Puhelu', 'Tekstiviesti', 'WhatsApp', 'Sähköposti']
 
-export default function Contact() {
+export default function Contact({ selectedPlan = '' }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
-  const [form, setForm] = useState({ name: '', email: '', service: '', message: '' })
-  const [sent, setSent]     = useState(false)
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    contactPref: '',
+    service: '',
+    message: '',
+  })
+  const [sent, setSent]       = useState(false)
   const [loading, setLoading] = useState(false)
+  const [errors, setErrors]   = useState({})
 
-  const handleChange = (e) => setForm(p => ({ ...p, [e.target.name]: e.target.value }))
+  useEffect(() => {
+    if (selectedPlan) {
+      setForm(p => ({ ...p, service: selectedPlan }))
+    }
+  }, [selectedPlan])
+
+  const capitalizeWords = (str) =>
+    str.replace(/(?:^|\s)\S/g, c => c.toUpperCase())
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    let processed = value
+
+    if (name === 'name') {
+      processed = capitalizeWords(value)
+    } else if (name === 'phone') {
+      processed = value.replace(/[^\d+\s\-()]/g, '')
+    }
+
+    setForm(p => ({ ...p, [name]: processed }))
+    if (errors[name]) setErrors(p => ({ ...p, [name]: false }))
+  }
+
+  const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())
+
+  const validate = () => {
+    const e = {}
+    if (!form.name.trim()) e.name = true
+    if (!form.email.trim() && !form.phone.trim()) {
+      e.email = true
+      e.phone = true
+    } else if (form.email.trim() && !isValidEmail(form.email)) {
+      e.email = true
+    }
+    if (!form.message.trim()) e.message = true
+    return e
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const e2 = validate()
+    if (Object.keys(e2).length > 0) { setErrors(e2); return }
     setLoading(true)
-    await new Promise(r => setTimeout(r, 1100))
-    setLoading(false)
-    setSent(true)
+    try {
+      const res = await fetch(import.meta.env.VITE_FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          nimi: form.name,
+          sähköposti: form.email,
+          puhelinnumero: form.phone,
+          yhteydenottotapa: form.contactPref,
+          paketti: form.service,
+          viesti: form.message,
+        }),
+      })
+      if (res.ok) {
+        setSent(true)
+      } else {
+        alert('Viestin lähetys epäonnistui. Yritä uudelleen.')
+      }
+    } catch {
+      alert('Verkkovirhe. Tarkista yhteys ja yritä uudelleen.')
+    } finally {
+      setLoading(false)
+    }
   }
+
+  const inputClass = (field) =>
+    `w-full px-4 py-3 rounded-xl bg-white/[0.04] border text-white placeholder-slate-600 text-sm focus:outline-none focus:bg-white/[0.06] transition-all ${
+      errors[field]
+        ? 'border-red-500/60 focus:border-red-500/80'
+        : 'border-white/[0.10] focus:border-snake-green/50'
+    }`
 
   return (
     <section id="yhteydenotto" className="py-24 lg:py-32 bg-dark-900 relative overflow-hidden">
@@ -28,7 +102,6 @@ export default function Contact() {
       <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-[#00d4ff]/[0.04] blur-[90px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
-        {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -38,66 +111,19 @@ export default function Contact() {
         >
           <div className="section-label mb-5">Aloitetaan</div>
           <h2 className="section-title text-4xl lg:text-5xl mb-4">
-            Kerro projektistasi.{' '}
-            <span className="gradient-text">Vastaan tänään.</span>
+            Mitä saisi olla?{' '}
+            <span className="gradient-text">Laita viestiä.</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-md mx-auto">
-            Täytä lomake tai lähetä sähköpostia suoraan.
-            Tarjous on aina maksuton ja vaatimusvapaa.
+            Tarjous on aina maksuton eikä sido mihinkään.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-
-          {/* Left: contact info */}
+        <div className="max-w-2xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-2 space-y-4"
-          >
-            <div className="glass-card p-6 space-y-5">
-              {[
-                { icon: Mail,  label: 'Sähköposti', value: 'hei@snakebyte.fi' },
-                { icon: Phone, label: 'Puhelin',    value: '+358 40 123 4567' },
-                { icon: Clock, label: 'Vastausaika','value': 'Saman päivän aikana' },
-              ].map(({ icon: Icon, label, value }) => (
-                <div key={label} className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-lg bg-snake-green/10 border border-snake-green/20 flex items-center justify-center flex-shrink-0">
-                    <Icon size={15} className="text-snake-green" />
-                  </div>
-                  <div>
-                    <div className="text-slate-500 text-xs mb-0.5">{label}</div>
-                    <div className="text-white text-sm font-medium">{value}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="glass-card p-5 border-snake-green/20 bg-snake-green/[0.03]">
-              <h4 className="font-semibold text-white text-sm mb-3">Mitä saat pyytämällä tarjouksen</h4>
-              <ul className="space-y-2">
-                {[
-                  'Kuulet hinnan 24 h sisällä',
-                  'Maksuton aloituspalaveri',
-                  'Ei myyntipaineita',
-                  'Voit kieltäytyä ilman selittelyjä',
-                ].map(item => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-slate-400">
-                    <CheckCircle2 size={13} className="text-snake-green flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-
-          {/* Right: form */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="lg:col-span-3"
           >
             {sent ? (
               <div className="glass-card p-10 flex flex-col items-center justify-center text-center gap-5 min-h-[380px]">
@@ -106,30 +132,70 @@ export default function Contact() {
                 </div>
                 <h3 className="font-display font-bold text-2xl text-white">Viesti lähetetty!</h3>
                 <p className="text-slate-400 text-sm max-w-xs">
-                  Palaan sinulle viimeistään huomiseen mennessä. Kiitos yhteydenotostasi.
+                  Kiitos yhteydenotostasi, palataan asiaan pikapuoliin!
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="glass-card p-7 space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-slate-400 text-xs font-medium mb-2">Nimi *</label>
-                    <input
-                      required name="name" value={form.name} onChange={handleChange}
-                      placeholder="Matti Meikäläinen"
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.10] text-white placeholder-slate-600 text-sm focus:outline-none focus:border-snake-green/50 focus:bg-white/[0.06] transition-all"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-slate-400 text-xs font-medium mb-2">Sähköposti *</label>
-                    <input
-                      required type="email" name="email" value={form.email} onChange={handleChange}
-                      placeholder="matti@yritys.fi"
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.10] text-white placeholder-slate-600 text-sm focus:outline-none focus:border-snake-green/50 focus:bg-white/[0.06] transition-all"
-                    />
+
+                {/* Nimi */}
+                <div>
+                  <label className="block text-slate-400 text-xs font-medium mb-2">Nimi *</label>
+                  <input
+                    name="name" value={form.name} onChange={handleChange}
+                    placeholder="Matti Meikäläinen"
+                    className={inputClass('name')}
+                  />
+                </div>
+
+                {/* Sähköposti */}
+                <div>
+                  <label className="block text-slate-400 text-xs font-medium mb-2">
+                    Sähköposti
+                  </label>
+                  <input
+                    type="email" name="email" value={form.email} onChange={handleChange}
+                    placeholder="matti@yritys.fi"
+                    className={inputClass('email')}
+                  />
+                </div>
+
+                {/* Puhelinnumero */}
+                <div>
+                  <label className="block text-slate-400 text-xs font-medium mb-2">
+                    Puhelinnumero
+                  </label>
+                  <input
+                    type="tel" name="phone" value={form.phone} onChange={handleChange}
+                    placeholder="+358 40 123 4567"
+                    className={inputClass('phone')}
+                  />
+                </div>
+                {(errors.email && errors.phone) && (
+                  <p className="text-red-400 text-xs -mt-3">Anna vähintään sähköposti tai puhelinnumero.</p>
+                )}
+
+                {/* Yhteydenottotapa */}
+                <div>
+                  <label className="block text-slate-400 text-xs font-medium mb-2">Miten haluat että otan yhteyttä?</label>
+                  <div className="flex flex-wrap gap-2">
+                    {contactOptions.map(opt => (
+                      <button
+                        key={opt} type="button"
+                        onClick={() => setForm(p => ({ ...p, contactPref: p.contactPref === opt ? '' : opt }))}
+                        className={`px-3.5 py-2 rounded-xl text-xs font-medium border transition-all ${
+                          form.contactPref === opt
+                            ? 'bg-snake-green/20 border-snake-green/50 text-snake-green'
+                            : 'bg-white/[0.04] border-white/[0.10] text-slate-400 hover:border-white/20'
+                        }`}
+                      >
+                        {opt}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
+                {/* Paketti */}
                 <div>
                   <label className="block text-slate-400 text-xs font-medium mb-2">Mitä tarvitset?</label>
                   <div className="flex flex-wrap gap-2">
@@ -139,7 +205,7 @@ export default function Contact() {
                         onClick={() => setForm(p => ({ ...p, service: p.service === s ? '' : s }))}
                         className={`px-3.5 py-2 rounded-xl text-xs font-medium border transition-all ${
                           form.service === s
-                            ? 'bg-snake-green/20 border-snake-green/50 text-snake-green'
+                            ? 'bg-[#00d4ff]/20 border-[#00d4ff]/50 text-[#00d4ff]'
                             : 'bg-white/[0.04] border-white/[0.10] text-slate-400 hover:border-white/20'
                         }`}
                       >
@@ -149,14 +215,15 @@ export default function Contact() {
                   </div>
                 </div>
 
+                {/* Viesti */}
                 <div>
                   <label className="block text-slate-400 text-xs font-medium mb-2">
                     Kerro lyhyesti – mikä yritys, mitä haluat sivustoltasi? *
                   </label>
                   <textarea
-                    required name="message" value={form.message} onChange={handleChange} rows={4}
-                    placeholder="Esim. olen putkimies ja tarvitsen siistin sivun jonne ohjata Instagram-seuraajat. Kiire saada se ennen kesää."
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.10] text-white placeholder-slate-600 text-sm focus:outline-none focus:border-snake-green/50 focus:bg-white/[0.06] transition-all resize-none"
+                    name="message" value={form.message} onChange={handleChange} rows={4}
+                    placeholder="Esim. olen lounasyrittäjä ja haluaisin nettisivut joilla esittelen lounaslistaani ja kerään yhteydenottoja."
+                    className={inputClass('message') + ' resize-none'}
                   />
                 </div>
 
