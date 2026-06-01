@@ -10,61 +10,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary SEO -->
-    <title>SnakeByte – Nettisivut yrityksille | Kuopio, Siilinjärvi, Pohjois-Savo</title>
-    <meta name="description" content="Ammattimainen nettisivujen suunnittelu ja toteutus pienyrityksille. Palvelemme Kuopiossa, Siilinjärvellä ja koko Pohjois-Savossa. Kysy maksuton tarjous – vastaus saman päivän aikana." />
-    <meta name="keywords" content="nettisivut kuopio, nettisivut siilinjärvi, kotisivut kuopio, verkkosivut pohjois-savo, web design kuopio, kotisivut yrityksille, landing page, nettisivut pienyrittäjä" />
+    <title>Nettisivut pienyrityksille – modernit kotisivut koko Suomeen | SnakeByte</title>
+    <meta name="description" content="SnakeByte tekee nettisivuja ja kotisivuja yrityksille kaikkialle Suomeen. Selkeä prosessi, modernit sivut ja kiinteä hinta. Sopii pienyrittäjille, toiminimille ja pienyrityksille." />
+    <meta name="keywords" content="nettisivut pienyrityksille, kotisivut yritykselle, nettisivut toiminimi, verkkosivut pk-yritys, kotisivut suomi, landing page yritys, nettisivut yrittäjä" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://snakebyte.fi/" />
-
-    <!-- Geo -->
-    <meta name="geo.region" content="FI-IS" />
-    <meta name="geo.placename" content="Kuopio" />
-    <meta name="geo.position" content="62.8924;27.6772" />
-    <meta name="ICBM" content="62.8924, 27.6772" />
+    <link rel="canonical" href="https://www.snakebyte.fi/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://snakebyte.fi/" />
-    <meta property="og:title" content="SnakeByte – Nettisivut yrityksille | Kuopio & Pohjois-Savo" />
-    <meta property="og:description" content="Modernit nettisivut pienyrityksille alkaen 250 €. Kuopio, Siilinjärvi ja koko Pohjois-Savo. Maksuton tarjous – vastaus tänään." />
-    <meta property="og:image" content="https://snakebyte.fi/isologo.png" />
+    <meta property="og:url" content="https://www.snakebyte.fi/" />
+    <meta property="og:title" content="Nettisivut pienyrityksille – modernit kotisivut koko Suomeen | SnakeByte" />
+    <meta property="og:description" content="Modernit nettisivut pienyrityksille alkaen 250 €. Palvelu koko Suomeen, helppo etäprosessi. Maksuton tarjous – vastaus tänään." />
+    <meta property="og:image" content="https://www.snakebyte.fi/isologo.png" />
     <meta property="og:locale" content="fi_FI" />
     <meta property="og:site_name" content="SnakeByte" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SnakeByte – Nettisivut yrityksille | Kuopio & Pohjois-Savo" />
+    <meta name="twitter:title" content="Nettisivut pienyrityksille – koko Suomeen | SnakeByte" />
     <meta name="twitter:description" content="Modernit nettisivut pienyrityksille alkaen 250 €. Maksuton tarjous – vastaus tänään." />
-    <meta name="twitter:image" content="https://snakebyte.fi/isologo.png" />
+    <meta name="twitter:image" content="https://www.snakebyte.fi/isologo.png" />
 
-    <!-- JSON-LD: LocalBusiness -->
+    <!-- SPA-reititys: GitHub Pages 404 → oikea sivu -->
+    <script>
+      (function(l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&')
+          }).join('?')
+          window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          )
+        }
+      }(window.location))
+    </script>
+
+    <!-- JSON-LD: ProfessionalService -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": "ProfessionalService",
       "name": "SnakeByte",
-      "description": "Nettisivujen suunnittelu ja toteutus pienyrityksille Kuopiossa, Siilinjärvellä ja koko Pohjois-Savossa.",
-      "url": "https://snakebyte.fi",
-      "logo": "https://snakebyte.fi/isologo.png",
-      "image": "https://snakebyte.fi/isologo.png",
-      "telephone": "",
+      "description": "Nettisivujen suunnittelu ja toteutus pienyrityksille ja yrittäjille koko Suomeen.",
+      "url": "https://www.snakebyte.fi",
+      "logo": "https://www.snakebyte.fi/isologo.png",
+      "image": "https://www.snakebyte.fi/isologo.png",
       "email": "rndoldtech@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Kuopio",
-        "addressRegion": "Pohjois-Savo",
-        "addressCountry": "FI"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 62.8924,
-        "longitude": 27.6772
-      },
-      "areaServed": [
-        { "@type": "City", "name": "Kuopio" },
-        { "@type": "City", "name": "Siilinjärvi" },
-        { "@type": "AdministrativeArea", "name": "Pohjois-Savo" }
-      ],
+      "areaServed": { "@type": "Country", "name": "Finland" },
       "priceRange": "€€",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",

@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: 'Paljonko tämä maksaa ja onko piilokuluja?',
-    a: 'Landing page alk. 250 € + alv ja perussivusto alk. 450 € + alv. Hinta sovitaan etukäteen, eikä se muutu kesken työn. Domain ja hosting laskutetaan erikseen, mutta nekin kerrotaan selkeästi tarjouksessa.',
+    a: 'Landing page alk. 350 € + alv ja perussivusto alk. 450 € + alv. Hinta sovitaan etukäteen, eikä se muutu kesken työn. Domain ja hosting laskutetaan erikseen, mutta nekin kerrotaan selkeästi tarjouksessa.',
   },
   {
     q: 'Voinko muokata sivua itse julkaisun jälkeen?',

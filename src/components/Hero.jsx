@@ -51,9 +51,9 @@ export default function Hero() {
           variants={fadeUp} initial="hidden" animate="show" custom={1}
           className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.06] tracking-tight mb-6"
         >
-          Nettisivu joka tuo{' '}
+          Nettisivut pienyrityksille helposti –{' '}
           <span className="relative inline-block">
-            <span className="gradient-text">asiakkaita.</span>
+            <span className="gradient-text">koko Suomeen.</span>
             <motion.span
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -61,8 +61,6 @@ export default function Hero() {
               className="absolute -bottom-1.5 left-0 right-0 h-[3px] bg-gradient-to-r from-snake-green to-[#00d4ff] rounded-full origin-left"
             />
           </span>
-          <br />
-          Ei vain näytä hyvältä.
         </motion.h1>
 
         {/* Sub */}
@@ -70,8 +68,17 @@ export default function Hero() {
           variants={fadeUp} initial="hidden" animate="show" custom={2}
           className="text-slate-400 text-lg lg:text-xl max-w-xl mx-auto mb-4 leading-relaxed"
         >
-          Teemme pienyrityksille näyttävät, modernit nettisivut joita ei tarvitse
-          hävetä – ja jotka oikeasti saavat kävijän ottamaan yhteyttä.
+          Rakennan selkeät ja modernit kotisivut yrittäjille, toiminimille ja pienyrityksille.
+          Projekti onnistuu etänä ilman turhia palavereja – sinä kerrot tarpeen, minä hoidan toteutuksen.
+        </motion.p>
+
+        {/* SEO-intro */}
+        <motion.p
+          variants={fadeUp} initial="hidden" animate="show" custom={3}
+          className="text-slate-500 text-sm max-w-lg mx-auto mb-10 leading-relaxed"
+        >
+          SnakeByte tekee nettisivuja ja kotisivuja yrityksille kaikkialle Suomeen.
+          Palvelu sopii erityisesti pienyrittäjille, jotka haluavat selkeät sivut ilman teknistä säätöä.
         </motion.p>
 
       
