@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, Moon, Sparkles, Sun, Sunrise, Sunset, X } from 'lucide-react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const navLinks = [
-  { label: 'Hinnasto',     href: '#hinnasto' },
-  { label: 'Ota yhteyttä', href: '#yhteydenotto' },
+  { label: 'Palvelut', href: '/', hash: '#ratkaisut' },
+  { label: 'Hinnasto', href: '/hinnasto' },
+  { label: 'Ota yhteyttä', href: '/', hash: '#yhteydenotto' },
 ]
 
 const themeOptions = [
@@ -46,6 +48,8 @@ function ThemeSwitcher({ themeMode, activeTheme, onThemeChange, compact = false 
 export default function Navbar({ themeMode = 'auto', activeTheme = 'night', onThemeChange = () => {} }) {
   const [scrolled, setScrolled]   = useState(false)
   const [menuOpen, setMenuOpen]   = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -53,9 +57,21 @@ export default function Navbar({ themeMode = 'auto', activeTheme = 'night', onTh
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleNav = (href) => {
+  const goTo = (href, hash = '') => {
     setMenuOpen(false)
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+    if (location.pathname === href) {
+      if (hash) {
+        document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+      return
+    }
+    navigate(`${href}${hash}`)
+  }
+
+  const goToContact = () => {
+    goTo('/', '#yhteydenotto')
   }
 
   return (
@@ -70,8 +86,9 @@ export default function Navbar({ themeMode = 'auto', activeTheme = 'night', onTh
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          <Link
+            to="/"
+            onClick={() => setMenuOpen(false)}
             className="flex items-center gap-2.5 group"
           >
             <img
@@ -82,14 +99,14 @@ export default function Navbar({ themeMode = 'auto', activeTheme = 'night', onTh
             <span className="font-display font-bold text-xl tracking-tight">
               Snake<span className="gradient-text">Byte</span>
             </span>
-          </button>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <button
-                key={link.href}
-                onClick={() => handleNav(link.href)}
+                key={`${link.href}${link.hash || ''}`}
+                onClick={() => goTo(link.href, link.hash)}
                 className="site-nav__link text-sm font-medium transition-colors duration-200 relative group"
               >
                 {link.label}
@@ -106,10 +123,10 @@ export default function Navbar({ themeMode = 'auto', activeTheme = 'night', onTh
               onThemeChange={onThemeChange}
             />
             <button
-              onClick={() => handleNav('#yhteydenotto')}
+              onClick={goToContact}
               className="btn-primary text-sm"
             >
-              Pyydä tarjous
+              Pyydä esikatselu
             </button>
           </div>
 
@@ -142,18 +159,18 @@ export default function Navbar({ themeMode = 'auto', activeTheme = 'night', onTh
               />
               {navLinks.map((link) => (
                 <button
-                  key={link.href}
-                  onClick={() => handleNav(link.href)}
+                  key={`${link.href}${link.hash || ''}`}
+                  onClick={() => goTo(link.href, link.hash)}
                   className="site-nav__link text-left text-base font-medium py-2 border-b transition-colors"
                 >
                   {link.label}
                 </button>
               ))}
               <button
-                onClick={() => handleNav('#yhteydenotto')}
+                onClick={goToContact}
                 className="btn-primary mt-1 justify-center"
               >
-                Pyydä tarjous
+                Pyydä esikatselu
               </button>
             </nav>
           </motion.div>

@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Navbar   from './components/Navbar'
-import Hero     from './components/Hero'
-import Pricing  from './components/Pricing'
-import Contact  from './components/Contact'
 import Footer   from './components/Footer'
-import FAQ      from './components/FAQ'
 import DemoPage from './components/DemoPage'
+import Home from './pages/Home'
+import PricingPage from './pages/PricingPage'
+import ServicePage from './pages/ServicePage'
 
 const isDemo = new URLSearchParams(window.location.search).has('demo')
 
@@ -17,7 +17,23 @@ function getTimeTheme(date = new Date()) {
   return 'night'
 }
 
-export default function App() {
+function ScrollToHash() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.hash) {
+      window.setTimeout(() => {
+        document.querySelector(location.hash)?.scrollIntoView({ behavior: 'smooth' })
+      }, 80)
+    } else {
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    }
+  }, [location.pathname, location.hash])
+
+  return null
+}
+
+function Site() {
   const [selectedPlan, setSelectedPlan] = useState('')
   const [themeMode, setThemeMode] = useState(() => (
     window.localStorage.getItem('snakebyte-theme-mode') || 'auto'
@@ -46,13 +62,48 @@ export default function App() {
   return (
     <div className="min-h-screen bg-dark-950 text-white">
       <Navbar themeMode={themeMode} activeTheme={activeTheme} onThemeChange={setThemeMode} />
+      <ScrollToHash />
       <main>
-        <Hero />
-        <Pricing onSelectPlan={setSelectedPlan} />
-        <FAQ />
-        <Contact selectedPlan={selectedPlan} />
+        <Routes>
+          <Route
+            path="/"
+            element={<Home selectedPlan={selectedPlan} onSelectPlan={setSelectedPlan} />}
+          />
+          <Route
+            path="/nettisivut-yritykselle"
+            element={<ServicePage path="/nettisivut-yritykselle" selectedPlan={selectedPlan} />}
+          />
+          <Route
+            path="/kotisivut-pienyritykselle"
+            element={<ServicePage path="/kotisivut-pienyritykselle" selectedPlan={selectedPlan} />}
+          />
+          <Route
+            path="/landing-page-yritykselle"
+            element={<ServicePage path="/landing-page-yritykselle" selectedPlan={selectedPlan} />}
+          />
+          <Route
+            path="/nettisivujen-uudistus"
+            element={<ServicePage path="/nettisivujen-uudistus" selectedPlan={selectedPlan} />}
+          />
+          <Route
+            path="/hinnasto"
+            element={<PricingPage selectedPlan={selectedPlan} onSelectPlan={setSelectedPlan} />}
+          />
+          <Route
+            path="*"
+            element={<Home selectedPlan={selectedPlan} onSelectPlan={setSelectedPlan} />}
+          />
+        </Routes>
       </main>
       <Footer />
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Site />
+    </BrowserRouter>
   )
 }

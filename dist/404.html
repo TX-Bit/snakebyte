@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <title>SnakeByte</title>
+    <script>
+      var path = window.location.pathname
+      var search = window.location.search
+      var hash = window.location.hash
+      window.location.replace('/?/' + path.slice(1) + search.replace('?', '&') + hash)
+    </script>
+  </head>
+  <body></body>
+</html>

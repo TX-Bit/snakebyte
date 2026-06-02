@@ -21,7 +21,7 @@ const plans = [
   },
   {
     name: 'Perussivusto',
-    price: '500 €',
+    price: '600 €',
     priceNote: '+ alv',
     description: 'Laajempi sivusto yritykselle, joka haluaa esitellä palvelut selkeästi ja kasvattaa näkyvyyttä.',
     color: 'var(--color-secondary)',
