@@ -1,4 +1,4 @@
-export const siteUrl = 'https://www.snakebyte.fi'
+export const siteUrl = 'https://snakebyte.fi'
 
 export const solutionLinks = [
   {

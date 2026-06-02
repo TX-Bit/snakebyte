@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.snakebyte.fi/sitemap.xml
+Sitemap: https://snakebyte.fi/sitemap.xml
