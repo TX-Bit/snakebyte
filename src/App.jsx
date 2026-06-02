@@ -1,13 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar       from './components/Navbar'
-import Hero         from './components/Hero'
-import Pricing      from './components/Pricing'
-import Contact      from './components/Contact'
-import Footer       from './components/Footer'
-import FAQ          from './components/FAQ'
-import DemoPage     from './components/DemoPage'
-import LocalSeoPage from './components/LocalSeoPage'
+import Navbar   from './components/Navbar'
+import Hero     from './components/Hero'
+import Pricing  from './components/Pricing'
+import Contact  from './components/Contact'
+import Footer   from './components/Footer'
+import FAQ      from './components/FAQ'
+import DemoPage from './components/DemoPage'
 
 const isDemo = new URLSearchParams(window.location.search).has('demo')
 
@@ -17,17 +15,6 @@ function getTimeTheme(date = new Date()) {
   if (hour >= 11 && hour < 17) return 'day'
   if (hour >= 17 && hour < 22) return 'evening'
   return 'night'
-}
-
-function HomePage({ onSelectPlan, selectedPlan }) {
-  return (
-    <main>
-      <Hero />
-      <Pricing onSelectPlan={onSelectPlan} />
-      <FAQ />
-      <Contact selectedPlan={selectedPlan} />
-    </main>
-  )
 }
 
 export default function App() {
@@ -57,20 +44,15 @@ export default function App() {
   if (isDemo) return <DemoPage />
 
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-dark-950 text-white">
-        <Navbar themeMode={themeMode} activeTheme={activeTheme} onThemeChange={setThemeMode} />
-        <Routes>
-          <Route path="/" element={
-            <HomePage onSelectPlan={setSelectedPlan} selectedPlan={selectedPlan} />
-          } />
-          <Route path="/nettisivut-kuopio" element={<LocalSeoPage city="kuopio" />} />
-          <Route path="/nettisivut-siilinjarvi" element={<LocalSeoPage city="siilinjarvi" />} />
-          <Route path="/nettisivut-maaninka" element={<LocalSeoPage city="maaninka" />} />
-          <Route path="/nettisivut-pohjois-savo" element={<LocalSeoPage city="pohjois-savo" />} />
-        </Routes>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <div className="min-h-screen bg-dark-950 text-white">
+      <Navbar themeMode={themeMode} activeTheme={activeTheme} onThemeChange={setThemeMode} />
+      <main>
+        <Hero />
+        <Pricing onSelectPlan={setSelectedPlan} />
+        <FAQ />
+        <Contact selectedPlan={selectedPlan} />
+      </main>
+      <Footer />
+    </div>
   )
 }
