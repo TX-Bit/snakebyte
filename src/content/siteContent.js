@@ -4,16 +4,11 @@ export const solutionLinks = [
   {
     title: 'Nettisivut yritykselle',
     href: '/nettisivut-yritykselle',
-    description: 'Selkeä sivusto yritykselle, joka haluaa näyttää luotettavalta ja saada yhteydenottoja.',
+    description: 'Selkeä sivusto pienyritykselle, yrittäjälle tai toiminimelle ilman teknistä säätöä.',
   },
   {
-    title: 'Kotisivut pienyritykselle',
-    href: '/kotisivut-pienyritykselle',
-    description: 'Kevyt ja ymmärrettävä ratkaisu pienyrittäjälle, toiminimelle tai uudelle yritykselle.',
-  },
-  {
-    title: 'Landing page yritykselle',
-    href: '/landing-page-yritykselle',
+    title: 'Landing page',
+    href: '/landing-page',
     description: 'Yhden sivun nopea aloitus palvelulle, kampanjalle tai pienelle yritykselle.',
   },
   {
@@ -28,7 +23,7 @@ export const packages = [
     name: 'Landing page',
     price: '250 €',
     priceNote: '+ alv',
-    href: '/landing-page-yritykselle',
+    href: '/landing-page',
     description: 'Nopea aloitus pienelle yritykselle tai uudelle palvelulle.',
     features: [
       '1 sivu',

@@ -5,15 +5,10 @@ const routes = [
   {
     path: 'nettisivut-yritykselle',
     title: 'Nettisivut yritykselle helposti ja selkeästi | SnakeByte',
-    description: 'Nettisivut yritykselle ilman teknistä säätöä. Selkeä prosessi, moderni toteutus, hinnat 250 € ja 600 € + alv.',
+    description: 'Modernit nettisivut pienyritykselle, yrittäjälle ja toiminimelle ilman teknistä säätöä. Landing page 250 € + alv tai perussivusto 600 € + alv.',
   },
   {
-    path: 'kotisivut-pienyritykselle',
-    title: 'Kotisivut pienyritykselle ilman teknistä säätöä | SnakeByte',
-    description: 'Kotisivut pienyritykselle, toiminimelle ja yrittäjälle selkeällä prosessilla. Aloita landing pagella tai perussivustolla.',
-  },
-  {
-    path: 'landing-page-yritykselle',
+    path: 'landing-page',
     title: 'Landing page yritykselle nopeasti ja edullisesti | SnakeByte',
     description: 'Landing page yritykselle 250 € + alv. Yksi selkeä sivu uudelle yritykselle, palvelulle tai kampanjalle.',
   },
@@ -55,6 +50,20 @@ for (const route of routes) {
   mkdirSync(dir, { recursive: true })
   writeFileSync(join(dir, 'index.html'), html, 'utf-8')
   console.log(`pre-rendered: ${route.path}`)
+}
+
+// Redirect-sivut vanhoille URL-osoitteille
+const redirects = [
+  { path: 'kotisivut-pienyritykselle', target: 'https://snakebyte.fi/nettisivut-yritykselle' },
+  { path: 'landing-page-yritykselle',  target: 'https://snakebyte.fi/landing-page' },
+]
+
+for (const r of redirects) {
+  const html = `<!doctype html><html lang="fi"><head><meta charset="utf-8"><link rel="canonical" href="${r.target}"><meta http-equiv="refresh" content="0;url=${r.target}"><title>Siirretty</title></head><body></body></html>`
+  const dir = join(distDir, r.path)
+  mkdirSync(dir, { recursive: true })
+  writeFileSync(join(dir, 'index.html'), html, 'utf-8')
+  console.log(`redirect: ${r.path} → ${r.target}`)
 }
 
 console.log('postbuild done')

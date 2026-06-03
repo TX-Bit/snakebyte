@@ -8,106 +8,60 @@ import { genericFaqs, packages, processSteps } from '../content/siteContent'
 const pages = {
   '/nettisivut-yritykselle': {
     title: 'Nettisivut yritykselle helposti ja selkeästi | SnakeByte',
-    description: 'Nettisivut yritykselle ilman teknistä säätöä. Selkeä prosessi, moderni toteutus, hinnat 250 € ja 600 € + alv.',
+    description: 'Modernit nettisivut pienyritykselle, yrittäjälle ja toiminimelle ilman teknistä säätöä. Landing page 250 € + alv tai perussivusto 600 € + alv.',
     h1: 'Nettisivut yritykselle helposti ja selkeästi',
     eyebrow: 'Nettisivut yritykselle',
     intro:
-      'Yrityksen nettisivujen ei tarvitse olla iso ja raskas projekti. SnakeByte rakentaa selkeän sivuston, joka kertoo mitä teet, näyttää luotettavalta ja ohjaa asiakkaan ottamaan yhteyttä.',
+      'Saat modernit kotisivut ilman teknistä säätöä. Palvelu sopii pienyrityksille, yrittäjille ja toiminimille, jotka haluavat selkeät sivut ja helpon tavan saada yhteydenottoja.',
     sections: [
-      {
-        heading: 'Mitä saat',
-        items: [
-          'Modernin ja mobiilissa toimivan sivuston',
-          'Yrityksen perustiedot, palvelut ja yhteydenoton selkeästi esiin',
-          'Kevyen hakukoneoptimoinnin tärkeimmille hakutermeille',
-          'Esikatselun ennen rakentamista ja julkaisun omalle domainille',
-        ],
-      },
       {
         heading: 'Kenelle tämä sopii',
         items: [
-          'Yritykselle, joka tarvitsee selkeät kotisivut ilman pitkää projektia',
-          'Palveluyritykselle, jonka pitää saada yhteydenottoja',
-          'Yrittäjälle, joka haluaa ulkoistaa teknisen toteutuksen',
-          'Yritykselle, jonka nykyinen sivusto ei enää tunnu uskottavalta',
+          'Pienyrityksille ja palveluyrityksille',
+          'Toiminimille ja aloittaville yrittäjille',
+          'Yrityksille, joiden sivut kaipaavat päivitystä',
+          'Yrittäjille, jotka haluavat ulkoistaa teknisen toteutuksen',
+          'Yrityksille, joilla ei ole aikaa rakentaa sivuja itse',
+        ],
+      },
+      {
+        heading: 'Mitä saat',
+        items: [
+          'Responsiivinen sivusto, joka toimii puhelimella',
+          'Palveluiden ja yrityksen selkeä esittely',
+          'Yhteydenottolomake suoraan sivustolta',
+          'Kevyt hakukoneoptimointi tärkeimmille hakutermeille',
+          'Julkaisu omalle domainille',
+          'Mahdollisuus laajentaa myöhemmin perussivustoksi',
         ],
       },
     ],
     priceText:
-      'Voit aloittaa kevyellä landing pagella 250 € + alv tai valita perussivuston 600 € + alv, kun tarvitset useamman sivun palveluille ja yritysesittelylle.',
+      'Voit aloittaa landing pagella 250 € + alv tai valita perussivuston 600 € + alv. Laajuus sovitaan yhdessä ennen aloitusta.',
     faqs: [
       {
         q: 'Paljonko nettisivut yritykselle maksavat?',
-        a: 'Landing page maksaa 250 € + alv ja sisältää yhden selkeän sivun, yhteydenottolomakkeen ja kevyen hakukoneoptimoinnin. Perussivusto on 600 € + alv ja kattaa 2–4 sivua palveluille, yritysesittelylle ja yhteystiedoille. Hinta sovitaan ennen aloitusta – yllätyksiä ei tule.',
+        a: 'Landing page maksaa 250 € + alv ja sisältää yhden selkeän sivun, yhteydenottolomakkeen ja kevyen hakukoneoptimoinnin. Perussivusto on 600 € + alv ja kattaa 2–4 sivua palveluille ja yritysesittelylle. Hinta sovitaan ennen aloitusta – yllätyksiä ei tule.',
       },
       {
-        q: 'Mitä yrityksen nettisivuihin yleensä kuuluu?',
-        a: 'Toimivat yrityksen nettisivut sisältävät yrityksen perustiedot, palvelukuvauksen, yhteydenottolomakkeen ja mobiiliystävällisen ulkoasun. Kevyt hakukoneoptimointi – oikeat otsikot, kuvaukset ja tekninen perusrakenne – kuuluu nykyään kaikkiin kunnollisiin toteutuksiin. Laajemmassa sivustossa on lisäksi erilliset sivut eri palveluille.',
+        q: 'Sopivatko sivut pienyritykselle tai toiminimelle?',
+        a: 'Kyllä. Palvelu on suunniteltu erityisesti pienyrityksiä, toiminimiä ja aloittavia yrittäjiä varten. Prosessi on kevyt eikä vaadi pitkiä kokouksia tai teknistä osaamista.',
       },
       {
-        q: 'Tarvitseeko pienyritys teknistä osaamista nettisivujen hankintaan?',
-        a: 'Ei tarvitse. Riittää, kun kerrot mitä yritys tekee, kenelle ja miten sinuun saa yhteyden. Tekninen toteutus, tekstien muotoilu ja julkaisu hoidetaan puolestasi. Saat esikatselun ennen rakentamista, joten voit kommentoida ulkoasua ilman teknistä osaamista.',
+        q: 'Tarvitsenko teknistä osaamista?',
+        a: 'Ei. Riittää, kun kerrot mitä yritys tekee, kenelle ja miten sinuun saa yhteyden. Tekninen toteutus, tekstien muotoilu ja julkaisu hoidetaan puolestasi. Saat esikatselun ennen rakentamista.',
       },
       {
-        q: 'Kauanko nettisivujen tekeminen kestää?',
-        a: 'Landing page valmistuu yleensä 1–2 viikossa ja perussivusto 2–4 viikossa. Aikataulu riippuu sisällön toimitusnopeudesta ja kommenttikierroksista. Prosessi alkaa lyhyellä alkukartoituksella, jonka jälkeen saat esikatselun kommentoitavaksi.',
-      },
-      {
-        q: 'Voiko landing pagea laajentaa myöhemmin perussivustoksi?',
+        q: 'Voiko sivustoa laajentaa myöhemmin?',
         a: 'Kyllä. Landing pagen voi myöhemmin laajentaa 2–4 sivun perussivustoksi, ja laajennuksessa hyvitetään 50 €. Aloittaminen pienestä on hyvä valinta, jos tarve kasvaa vasta myöhemmin.',
       },
       {
-        q: 'Mikä on landing page ja milloin se riittää?',
-        a: 'Landing page on yhden sivun kokonaisuus, joka kertoo olennaisen yrityksestä ja ohjaa kävijän ottamaan yhteyttä. Se sopii uudelle yritykselle, yksittäisen palvelun esittelyyn tai kampanjalle. Jos tavoitteesi on saada yhteydenottoja yhdestä selkeästä palvelusta, yksi hyvin rakennettu sivu riittää usein hyvin.',
-      },
-      {
-        q: 'Mitä tarkoittaa hakukoneoptimointi nettisivuilla?',
-        a: 'Hakukoneoptimointi tarkoittaa, että sivusto rakennetaan niin, että Google löytää sen ja ymmärtää mitä se tarjoaa. Käytännössä se tarkoittaa oikeiden hakusanojen käyttöä otsikoissa ja kuvauksissa sekä teknistä perusrakennetta kuten nopeutta ja mobiiliystävällisyyttä. Kevyt SEO kuuluu kaikkiin SnakeByte-toteutuksiin.',
+        q: 'Saako sivuille yhteydenottolomakkeen?',
+        a: 'Kyllä. Yhteydenottolomake kuuluu kaikkiin toteutuksiin. Se tekee asiakkaille helpoksi ottaa yhteyttä suoraan sivustolta.',
       },
     ],
   },
-  '/kotisivut-pienyritykselle': {
-    title: 'Kotisivut pienyritykselle ilman teknistä säätöä | SnakeByte',
-    description: 'Kotisivut pienyritykselle, toiminimelle ja yrittäjälle selkeällä prosessilla. Aloita landing pagella tai perussivustolla.',
-    h1: 'Kotisivut pienyritykselle ilman teknistä säätöä',
-    eyebrow: 'Pienyritykselle',
-    intro:
-      'Pienyrityksen kotisivujen tärkein tehtävä on tehdä yrityksestä helposti ymmärrettävä ja yhteydenotosta vaivatonta. Siksi ratkaisu pidetään selkeänä, nopeana ja järkevän kokoisena.',
-    sections: [
-      {
-        heading: 'Pienyrittäjälle sopiva lähestymistapa',
-        items: [
-          'Ei pitkiä työpajoja tai teknistä sanastoa',
-          'Aloitus onnistuu lyhyellä kuvauksella yrityksestäsi',
-          'Tekstit ja rakenne voidaan viimeistellä yhdessä',
-          'Saat sivun, jota asiakkaan on helppo selata puhelimella',
-        ],
-      },
-      {
-        heading: 'Miksi yksinkertainen sivusto riittää usein',
-        items: [
-          'Asiakas haluaa nopeasti nähdä mitä tarjoat',
-          'Yhteystietojen ja tarjouspyynnön pitää löytyä heti',
-          'Selkeä yhden sivun rakenne toimii hyvin uudelle yritykselle',
-          'Perussivusto sopii, kun palveluita tai sisältöä on enemmän',
-        ],
-      },
-    ],
-    priceText:
-      'Landing page on hyvä ensimmäinen versio 250 € + alv. Perussivusto 600 € + alv sopii, kun haluat 2-4 sivua ja enemmän tilaa palveluille.',
-    faqs: [
-      {
-        q: 'Tarvitsenko heti monta sivua?',
-        a: 'Et välttämättä. Monelle pienyrittäjälle yhden sivun landing page riittää alkuun hyvin.',
-      },
-      {
-        q: 'Autatko tekstien kanssa?',
-        a: 'Kyllä. Voit lähettää raakatekstin tai pelkät pääkohdat, ja muotoilen niistä sivulle sopivan kokonaisuuden.',
-      },
-      ...genericFaqs.slice(0, 2),
-    ],
-  },
-  '/landing-page-yritykselle': {
+  '/landing-page': {
     title: 'Landing page yritykselle nopeasti ja edullisesti | SnakeByte',
     description: 'Landing page yritykselle 250 € + alv. Yksi selkeä sivu uudelle yritykselle, palvelulle tai kampanjalle.',
     h1: 'Landing page yritykselle nopeasti ja edullisesti',

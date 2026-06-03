@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Navbar   from './components/Navbar'
 import Footer   from './components/Footer'
 import DemoPage from './components/DemoPage'
@@ -75,13 +75,11 @@ function Site() {
             element={<ServicePage path="/nettisivut-yritykselle" selectedPlan={selectedPlan} />}
           />
           <Route
-            path="/kotisivut-pienyritykselle"
-            element={<ServicePage path="/kotisivut-pienyritykselle" selectedPlan={selectedPlan} />}
+            path="/landing-page"
+            element={<ServicePage path="/landing-page" selectedPlan={selectedPlan} />}
           />
-          <Route
-            path="/landing-page-yritykselle"
-            element={<ServicePage path="/landing-page-yritykselle" selectedPlan={selectedPlan} />}
-          />
+          <Route path="/kotisivut-pienyritykselle" element={<Navigate to="/nettisivut-yritykselle" replace />} />
+          <Route path="/landing-page-yritykselle" element={<Navigate to="/landing-page" replace />} />
           <Route
             path="/nettisivujen-uudistus"
             element={<ServicePage path="/nettisivujen-uudistus" selectedPlan={selectedPlan} />}
