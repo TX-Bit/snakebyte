@@ -36,10 +36,33 @@ const pages = {
     priceText:
       'Voit aloittaa kevyellä landing pagella 250 € + alv tai valita perussivuston 600 € + alv, kun tarvitset useamman sivun palveluille ja yritysesittelylle.',
     faqs: [
-      ...genericFaqs,
       {
-        q: 'Voiko sivustoa laajentaa myöhemmin?',
-        a: 'Kyllä. Sivusto voidaan aloittaa pienestä ja laajentaa myöhemmin esimerkiksi uusilla palvelusivuilla.',
+        q: 'Paljonko nettisivut yritykselle maksavat?',
+        a: 'Landing page maksaa 250 € + alv ja sisältää yhden selkeän sivun, yhteydenottolomakkeen ja kevyen hakukoneoptimoinnin. Perussivusto on 600 € + alv ja kattaa 2–4 sivua palveluille, yritysesittelylle ja yhteystiedoille. Hinta sovitaan ennen aloitusta – yllätyksiä ei tule.',
+      },
+      {
+        q: 'Mitä yrityksen nettisivuihin yleensä kuuluu?',
+        a: 'Toimivat yrityksen nettisivut sisältävät yrityksen perustiedot, palvelukuvauksen, yhteydenottolomakkeen ja mobiiliystävällisen ulkoasun. Kevyt hakukoneoptimointi – oikeat otsikot, kuvaukset ja tekninen perusrakenne – kuuluu nykyään kaikkiin kunnollisiin toteutuksiin. Laajemmassa sivustossa on lisäksi erilliset sivut eri palveluille.',
+      },
+      {
+        q: 'Tarvitseeko pienyritys teknistä osaamista nettisivujen hankintaan?',
+        a: 'Ei tarvitse. Riittää, kun kerrot mitä yritys tekee, kenelle ja miten sinuun saa yhteyden. Tekninen toteutus, tekstien muotoilu ja julkaisu hoidetaan puolestasi. Saat esikatselun ennen rakentamista, joten voit kommentoida ulkoasua ilman teknistä osaamista.',
+      },
+      {
+        q: 'Kauanko nettisivujen tekeminen kestää?',
+        a: 'Landing page valmistuu yleensä 1–2 viikossa ja perussivusto 2–4 viikossa. Aikataulu riippuu sisällön toimitusnopeudesta ja kommenttikierroksista. Prosessi alkaa lyhyellä alkukartoituksella, jonka jälkeen saat esikatselun kommentoitavaksi.',
+      },
+      {
+        q: 'Voiko landing pagea laajentaa myöhemmin perussivustoksi?',
+        a: 'Kyllä. Landing pagen voi myöhemmin laajentaa 2–4 sivun perussivustoksi, ja laajennuksessa hyvitetään 50 €. Aloittaminen pienestä on hyvä valinta, jos tarve kasvaa vasta myöhemmin.',
+      },
+      {
+        q: 'Mikä on landing page ja milloin se riittää?',
+        a: 'Landing page on yhden sivun kokonaisuus, joka kertoo olennaisen yrityksestä ja ohjaa kävijän ottamaan yhteyttä. Se sopii uudelle yritykselle, yksittäisen palvelun esittelyyn tai kampanjalle. Jos tavoitteesi on saada yhteydenottoja yhdestä selkeästä palvelusta, yksi hyvin rakennettu sivu riittää usein hyvin.',
+      },
+      {
+        q: 'Mitä tarkoittaa hakukoneoptimointi nettisivuilla?',
+        a: 'Hakukoneoptimointi tarkoittaa, että sivusto rakennetaan niin, että Google löytää sen ja ymmärtää mitä se tarjoaa. Käytännössä se tarkoittaa oikeiden hakusanojen käyttöä otsikoissa ja kuvauksissa sekä teknistä perusrakennetta kuten nopeutta ja mobiiliystävällisyyttä. Kevyt SEO kuuluu kaikkiin SnakeByte-toteutuksiin.',
       },
     ],
   },
@@ -238,6 +261,12 @@ function PriceLift({ page }) {
             </Link>
           ))}
         </div>
+        <p className="text-center mt-6 text-sm text-slate-400">
+          Lue tarkempi hintaopas:{' '}
+          <Link to="/opas/nettisivut-yritykselle-hinta" className="text-snake-green hover:underline">
+            nettisivut yritykselle hinta →
+          </Link>
+        </p>
       </div>
     </section>
   )
@@ -272,7 +301,7 @@ export default function ServicePage({ path, selectedPlan }) {
 
   return (
     <>
-      <SEO title={page.title} description={page.description} path={path} />
+      <SEO title={page.title} description={page.description} path={path} faqItems={page.faqs} />
       <HeroBlock page={page} />
       <ContentSections page={page} />
       <PriceLift page={page} />

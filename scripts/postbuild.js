@@ -27,6 +27,11 @@ const routes = [
     title: 'Hinnasto - nettisivut yritykselle | SnakeByte',
     description: 'SnakeByte-hinnasto: landing page 250 € + alv ja perussivusto 600 € + alv. Selkeä hinta ennen aloitusta.',
   },
+  {
+    path: 'opas/nettisivut-yritykselle-hinta',
+    title: 'Nettisivut yritykselle hinta – mitä kotisivut maksavat?',
+    description: 'Selkeä opas yrityksen nettisivujen hintaan. Katso mitä landing page ja perussivusto yleensä sisältävät ja miten pienyritys voi aloittaa helposti.',
+  },
 ]
 
 const distDir = 'dist'

@@ -6,6 +6,7 @@ import DemoPage from './components/DemoPage'
 import Home from './pages/Home'
 import PricingPage from './pages/PricingPage'
 import ServicePage from './pages/ServicePage'
+import GuideHinta from './pages/GuideHinta'
 
 const isDemo = new URLSearchParams(window.location.search).has('demo')
 
@@ -88,6 +89,10 @@ function Site() {
           <Route
             path="/hinnasto"
             element={<PricingPage selectedPlan={selectedPlan} onSelectPlan={setSelectedPlan} />}
+          />
+          <Route
+            path="/opas/nettisivut-yritykselle-hinta"
+            element={<GuideHinta selectedPlan={selectedPlan} />}
           />
           <Route
             path="*"

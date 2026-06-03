@@ -31,6 +31,7 @@ export default function PricingPage({ selectedPlan, onSelectPlan }) {
         title="Hinnasto - nettisivut yritykselle | SnakeByte"
         description="SnakeByte-hinnasto: landing page 250 € + alv ja perussivusto 600 € + alv. Selkeä hinta ennen aloitusta."
         path="/hinnasto"
+        faqItems={pricingFaqs}
       />
       <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-dark-950 relative overflow-hidden">
         <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[620px] h-[420px] rounded-full bg-snake-green/[0.05] blur-[120px] pointer-events-none" />
@@ -80,6 +81,12 @@ export default function PricingPage({ selectedPlan, onSelectPlan }) {
           <p className="text-slate-400 text-sm leading-relaxed">
             Voit aloittaa landing-sivulla ja päivittää myöhemmin perussivustoksi.
             Laajennuksessa hyvitetään 50 €. Julkaisun jälkeisestä ylläpidosta ja pienistä muutoksista sovitaan tarpeen mukaan.
+          </p>
+          <p className="text-sm text-slate-400 mt-4">
+            Lue tarkempi hintaopas:{' '}
+            <Link to="/opas/nettisivut-yritykselle-hinta" className="text-snake-green hover:underline">
+              nettisivut yritykselle hinta – mitä kotisivut maksavat? →
+            </Link>
           </p>
         </div>
       </section>

@@ -21,7 +21,7 @@ function upsertCanonical(url) {
   node.setAttribute('href', url)
 }
 
-export default function SEO({ title, description, path = '/' }) {
+export default function SEO({ title, description, path = '/', faqItems }) {
   useEffect(() => {
     const canonical = `${siteUrl}${path}`
     document.title = title
@@ -32,7 +32,26 @@ export default function SEO({ title, description, path = '/' }) {
     upsertMeta('meta[name="twitter:title"]', { name: 'twitter:title' }, 'content', title)
     upsertMeta('meta[name="twitter:description"]', { name: 'twitter:description' }, 'content', description)
     upsertCanonical(canonical)
-  }, [title, description, path])
+
+    document.head.querySelector('script[data-seo-faq]')?.remove()
+    if (faqItems?.length) {
+      const script = document.createElement('script')
+      script.type = 'application/ld+json'
+      script.dataset.seoFaq = '1'
+      script.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqItems.map(({ q, a }) => ({
+          '@type': 'Question',
+          name: q,
+          acceptedAnswer: { '@type': 'Answer', text: a },
+        })),
+      })
+      document.head.appendChild(script)
+    }
+
+    return () => { document.head.querySelector('script[data-seo-faq]')?.remove() }
+  }, [title, description, path, faqItems])
 
   return null
 }
