@@ -11,10 +11,15 @@ export default function Contact({ selectedPlan = '' }) {
 
   const [form, setForm] = useState({
     name: '',
+    company: '',
     email: '',
     phone: '',
     contactPref: '',
     service: '',
+    facebook: '',
+    instagram: '',
+    linkedin: '',
+    website: '',
     message: '',
   })
   const [sent, setSent]       = useState(false)
@@ -70,10 +75,15 @@ export default function Contact({ selectedPlan = '' }) {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           nimi: form.name,
+          yritys: form.company,
           sähköposti: form.email,
           puhelinnumero: form.phone,
           yhteydenottotapa: form.contactPref,
           paketti: form.service,
+          facebook: form.facebook,
+          instagram: form.instagram,
+          linkedin: form.linkedin,
+          nykyinen_sivusto: form.website,
           viesti: form.message,
         }),
       })
@@ -109,13 +119,14 @@ export default function Contact({ selectedPlan = '' }) {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <div className="section-label mb-5">Aloitetaan</div>
+          <div className="section-label mb-5">Pyydä esikatselu</div>
           <h2 className="section-title text-4xl lg:text-5xl mb-4">
-            Mitä saisi olla?{' '}
-            <span className="gradient-text">Laita viestiä.</span>
+            Näe miltä sivustosi{' '}
+            <span className="gradient-text">voisi näyttää.</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-md mx-auto">
-            Tarjous on aina maksuton eikä sido mihinkään.
+            Täytä tiedot yrityksestäsi – rakennan sinulle ilmaisen demoversion ja lähetän linkin.
+            Ei sitoumuksia.
           </p>
         </motion.div>
 
@@ -130,9 +141,9 @@ export default function Contact({ selectedPlan = '' }) {
                 <div className="w-14 h-14 rounded-full bg-snake-green/15 border border-snake-green/30 flex items-center justify-center">
                   <CheckCircle2 size={28} className="text-snake-green" />
                 </div>
-                <h3 className="font-display font-bold text-2xl text-white">Viesti lähetetty!</h3>
+                <h3 className="font-display font-bold text-2xl text-white">Pyyntö lähetetty!</h3>
                 <p className="text-slate-400 text-sm max-w-xs">
-                  Kiitos yhteydenotostasi, palataan asiaan pikapuoliin!
+                  Rakennan demoversion ja otan yhteyttä pikapuoliin. Kiitos!
                 </p>
               </div>
             ) : (
@@ -145,6 +156,16 @@ export default function Contact({ selectedPlan = '' }) {
                     name="name" value={form.name} onChange={handleChange}
                     placeholder="Matti Meikäläinen"
                     className={inputClass('name')}
+                  />
+                </div>
+
+                {/* Yrityksen nimi */}
+                <div>
+                  <label className="block text-slate-400 text-xs font-medium mb-2">Yrityksen nimi</label>
+                  <input
+                    name="company" value={form.company} onChange={handleChange}
+                    placeholder="Putkifirma Virtanen Oy"
+                    className={inputClass('company')}
                   />
                 </div>
 
@@ -215,6 +236,36 @@ export default function Contact({ selectedPlan = '' }) {
                   </div>
                 </div>
 
+                {/* Some-linkit */}
+                <div>
+                  <label className="block text-slate-400 text-xs font-medium mb-2">
+                    Somekanavat ja nykyinen sivusto{' '}
+                    <span className="text-slate-600 font-normal">(valinnainen – käytän tietoja demoon)</span>
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <input
+                      name="website" value={form.website} onChange={handleChange}
+                      placeholder="Nykyinen sivusto (URL)"
+                      className={inputClass('website')}
+                    />
+                    <input
+                      name="facebook" value={form.facebook} onChange={handleChange}
+                      placeholder="Facebook-sivu (URL)"
+                      className={inputClass('facebook')}
+                    />
+                    <input
+                      name="instagram" value={form.instagram} onChange={handleChange}
+                      placeholder="Instagram-profiili (URL)"
+                      className={inputClass('instagram')}
+                    />
+                    <input
+                      name="linkedin" value={form.linkedin} onChange={handleChange}
+                      placeholder="LinkedIn (URL)"
+                      className={inputClass('linkedin')}
+                    />
+                  </div>
+                </div>
+
                 {/* Viesti */}
                 <div>
                   <label className="block text-slate-400 text-xs font-medium mb-2">
@@ -222,7 +273,7 @@ export default function Contact({ selectedPlan = '' }) {
                   </label>
                   <textarea
                     name="message" value={form.message} onChange={handleChange} rows={4}
-                    placeholder="Esim. olen lounasyrittäjä ja haluaisin nettisivut joilla esittelen lounaslistaani ja kerään yhteydenottoja."
+                    placeholder="Esim. olen putkiyrittäjä Kuopiossa. Haluan yksinkertaiset sivut joilla esittelen palvelut ja kerään yhteydenottoja."
                     className={inputClass('message') + ' resize-none'}
                   />
                 </div>
@@ -239,13 +290,13 @@ export default function Contact({ selectedPlan = '' }) {
                     </>
                   ) : (
                     <>
-                      Lähetä viesti <Send size={16} />
+                      Pyydä esikatselu <Send size={16} />
                     </>
                   )}
                 </button>
 
                 <p className="text-slate-600 text-xs text-center">
-                  Ei sitoumuksia. Tarjous on maksuton.
+                  Saat demoversion sähköpostitse tai puhelimitse. Ei sitoumuksia.
                 </p>
               </form>
             )}
