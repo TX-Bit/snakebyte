@@ -3,7 +3,8 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import SEO from '../components/SEO'
 import Hero from '../components/Hero'
 import Contact from '../components/Contact'
-import { packages, processSteps, solutionLinks } from '../content/siteContent'
+import FAQList from '../components/FAQList'
+import { packages, processSteps, solutionLinks, genericFaqs } from '../content/siteContent'
 
 function PackageHighlights({ onSelectPlan }) {
   return (
@@ -54,9 +55,14 @@ function PackageHighlights({ onSelectPlan }) {
           ))}
         </div>
 
-        <p className="text-slate-400 text-sm text-center max-w-lg mx-auto mt-7">
-          Landing-sivusta voidaan myöhemmin tehdä perussivusto. Laajennuksessa hyvitetään 50 €.
-        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-7">
+          <p className="text-slate-400 text-sm max-w-lg">
+            Landing-sivusta voidaan myöhemmin tehdä perussivusto. Laajennuksessa hyvitetään 50 €.
+          </p>
+          <Link to="/hinnasto" className="text-snake-green text-sm hover:underline whitespace-nowrap flex-shrink-0">
+            Katso täysi hinnasto →
+          </Link>
+        </div>
       </div>
     </section>
   )
@@ -115,6 +121,24 @@ function SolutionLinks() {
               </div>
             </Link>
           ))}
+          <Link to="/hinnasto" className="glass-card p-6 group">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h3 className="font-display font-semibold text-white text-xl mb-2">Hinnasto</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">Landing page 250 € + alv ja perussivusto 600 € + alv. Vertaa paketteja ja valitse sopiva.</p>
+              </div>
+              <ArrowRight className="text-snake-green flex-shrink-0 transition-transform group-hover:translate-x-1" size={19} />
+            </div>
+          </Link>
+          <Link to="/opas/nettisivut-yritykselle-hinta" className="glass-card p-6 group">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h3 className="font-display font-semibold text-white text-xl mb-2">Nettisivujen hinta – opas</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">Mitä yrityksen nettisivut maksavat ja mistä hinta muodostuu? Selkeä opas pienyrittäjälle.</p>
+              </div>
+              <ArrowRight className="text-snake-green flex-shrink-0 transition-transform group-hover:translate-x-1" size={19} />
+            </div>
+          </Link>
         </div>
       </div>
     </section>
@@ -141,6 +165,27 @@ export default function Home({ selectedPlan, onSelectPlan }) {
       <PackageHighlights onSelectPlan={onSelectPlan} />
       <CompactProcess />
       <SolutionLinks />
+      <section className="py-20 lg:py-24 bg-dark-900">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-9">
+            <div className="section-label mb-5">FAQ</div>
+            <h2 className="section-title text-3xl lg:text-5xl">
+              Usein kysyttyä
+            </h2>
+          </div>
+          <FAQList items={genericFaqs} />
+          <p className="text-center mt-6 text-sm text-slate-400">
+            Lisää kysymyksiä:{' '}
+            <Link to="/nettisivut-yritykselle" className="text-snake-green hover:underline">
+              nettisivut yritykselle →
+            </Link>
+            {' '}tai{' '}
+            <Link to="/hinnasto" className="text-snake-green hover:underline">
+              hinnasto →
+            </Link>
+          </p>
+        </div>
+      </section>
       <Contact selectedPlan={selectedPlan} />
     </>
   )
