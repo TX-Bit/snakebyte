@@ -51,7 +51,7 @@ export default function Hero() {
           variants={fadeUp} initial="hidden" animate="show" custom={1}
           className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.06] tracking-tight mb-6"
         >
-          Nettisivut pienyrityksille helposti –{' '}
+          Nettisivut helposti ja selkeään hintaan –{' '}
           <span className="relative inline-block">
             <span className="gradient-text">koko Suomeen.</span>
             <motion.span
@@ -68,7 +68,7 @@ export default function Hero() {
           variants={fadeUp} initial="hidden" animate="show" custom={2}
           className="text-slate-400 text-lg lg:text-xl max-w-xl mx-auto mb-4 leading-relaxed"
         >
-          Rakennan selkeät ja modernit kotisivut yrittäjille, toiminimille ja pienyrityksille.
+          Selkeät ja modernit kotisivut yrittäjille, yhdistyksille, bändeille... kelle vaan.
           Projekti onnistuu etänä ilman turhia palavereja – sinä kerrot tarpeen, minä hoidan toteutuksen.
         </motion.p>
 
